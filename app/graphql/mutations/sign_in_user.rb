@@ -13,7 +13,7 @@ class Mutations::SignInUser < Mutations::BaseMutation
         return unless user.authenticate(email[:password])
 
         # use Ruby on Rails - ActiveSupport::MessageEncryptor, to build a token
-        crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base(0..31))
+        crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base.byteslice(0..31))
         token = crypt.encrypt_and_sign("user-id:#{ user.id }")
 
         { user: user, token: token }
