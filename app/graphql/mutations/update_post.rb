@@ -11,10 +11,18 @@ class Mutations::UpdatePost < Mutations::BaseMutation
         return Errors unless user
 
         post = Post.find(id)
-        if post
-            post.update(**attributes)
+        return Errors unless post
 
-            { post: post }
+        if user && (user.id === post.user_id)
+            post.update(**attributes)
+            return { post: post }
+        else
+            puts 'Not allowed'
         end
     end
 end
+
+
+
+
+

@@ -8,12 +8,16 @@ class Mutations::UpdateInformation < Mutations::BaseMutation
 
     def resolve(id: nil, **attributes)
         user = context[:current_user]
-
+        
         info = Information.find(id)
         return Errors unless info
-        if(info)
-            info.update(**attributes)
+        
+        #Simply validation if user.id !== info.post_id => not allowed
+        if user && (user.id === info.user_id)
+            info.update!(**attributes)
             return { info: info }
+        else
+            puts 'Not allowed'
         end
 
     end

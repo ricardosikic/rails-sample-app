@@ -9,6 +9,11 @@ class Mutations::DeleteInformation < Mutations::BaseMutation
         info = Information.find(id)
         return Errors unless info
 
-        info.destroy
+        if user && (user.id === info.user_id)
+            info.destroy
+            return { info: info }
+        else
+            puts 'Not allowed'
+        end
     end
 end

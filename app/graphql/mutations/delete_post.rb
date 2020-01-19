@@ -10,9 +10,13 @@ class Mutations::DeletePost < Mutations::BaseMutation
         post_id = Post.find(id)
         return Errors unless post_id
 
-        post_id.destroy
-
-        { post_id: post_id }
+        if user && (user.id === post_id.user_id)
+            post_id.destroy
+            return { post_id: post_id }
+        else
+            puts 'Not allowed to delete'
+        end
     end
 
 end
+
