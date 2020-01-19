@@ -4,5 +4,7 @@ module Types
       field :name, String, null: false
       field :last_name, String, null: false
       field :email, String, null: false
+      field :posts, [PostType], null: false
+      field :information, [InformationType], null: false
     end
   end
