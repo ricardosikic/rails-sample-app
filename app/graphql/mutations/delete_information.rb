@@ -1,7 +1,6 @@
 class Mutations::DeleteInformation < Mutations::BaseMutation
     argument :id, ID, required: true
     
-
     type Types::InformationType
 
     def resolve(id:)
