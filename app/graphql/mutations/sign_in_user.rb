@@ -18,6 +18,6 @@ class Mutations::SignInUser < Mutations::BaseMutation
 
         context[:session][:token] = token
 
-        { user: user, token: token }
+        return { user: user, token: token }
     end
 end
