@@ -13,7 +13,7 @@ class Mutations::UpdateInformation < Mutations::BaseMutation
         return Errors unless info
         
         #Simply validation if user.id !== info.post_id => not allowed
-        if user && (user.id === info.user_id)
+        if user && (user.id === info.user_id || user.is_admin == true)
             info.update!(**attributes)
             return { info: info }
         else

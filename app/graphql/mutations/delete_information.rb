@@ -8,7 +8,7 @@ class Mutations::DeleteInformation < Mutations::BaseMutation
         info = Information.find(id)
         return Errors unless info
 
-        if user && (user.id === info.user_id)
+        if user && (user.id === info.user_id || user.is_admin == true)
             info.destroy
             return { info: info }
         else

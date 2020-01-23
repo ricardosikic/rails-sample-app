@@ -13,7 +13,7 @@ class Mutations::UpdatePost < Mutations::BaseMutation
         post = Post.find(id)
         return Errors unless post
 
-        if user && (user.id === post.user_id)
+        if user && (user.id === post.user_id || user.is_admin == true)
             post.update(**attributes)
             return { post: post }
         else
