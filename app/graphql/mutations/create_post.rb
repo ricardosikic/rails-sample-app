@@ -6,6 +6,7 @@ class Mutations::CreatePost < Mutations::BaseMutation
     type Types::PostType
 
     def resolve(title: nil, description: nil, body: nil)
+        user = context[:current_user]
         post = Post.create!(
             title: title,
             description: description,
@@ -13,6 +14,6 @@ class Mutations::CreatePost < Mutations::BaseMutation
             user: context[:current_user]
         )
 
-        { post: post }
+        return { post: post }
     end
 end
