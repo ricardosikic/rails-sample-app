@@ -10,5 +10,6 @@ module Types
     field :delete_information, mutation: Mutations::DeleteInformation
     field :update_information, mutation: Mutations::UpdateInformation
     field :create_comment, mutation: Mutations::CreateComment
+    field :delete_comment, mutation: Mutations::DeleteComment
   end
 end
