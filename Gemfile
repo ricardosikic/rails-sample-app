@@ -61,3 +61,5 @@ gem 'graphiql-rails', '1.5.0', group: :development
 
 #secure password
 gem 'bcrypt', '~> 3.1.7'
+
+gem 'rack-cors'
