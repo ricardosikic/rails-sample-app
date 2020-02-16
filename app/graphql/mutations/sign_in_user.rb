@@ -9,6 +9,7 @@ class Mutations::SignInUser < Mutations::BaseMutation
         return unless email
 
         user = User.find_by email: email[:email]
+
         return unless user
         return unless user.authenticate(email[:password])
 
